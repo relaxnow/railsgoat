@@ -24,7 +24,9 @@ jobs:
           ruby-version: '2.6.5'
       - name: Install CLI
         run: curl -fsS https://tools.veracode.com/veracode-cli/install | sh
-      - run: ls -lah
-      - run: echo $PATH
+      - run: apt-get update && apt-get install -y curl vim gpg git php php-curl
+      - run: curl -sSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xdf7dd7a50b746dd4' | gpg --dearmor -o /usr/share/keyrings/veracode-sca-archive.gpg
+      - run: echo 'deb [signed-by=/usr/share/keyrings/veracode-sca-archive.gpg] https://download.sourceclear.com/ubuntu stable/' | tee /etc/apt/sources.list.d/veracode-sca.list
+      - run: apt-get update && apt-get install -y srcclr
       - name: Veracode package
         run: ./veracode package -s . -a --debug
