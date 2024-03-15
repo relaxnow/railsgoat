@@ -27,4 +27,4 @@ jobs:
       - run: ls -lah
       - run: echo $PATH
       - name: Veracode package
-        run: veracode package -s . -a --debug
+        run: ./veracode package -s . -a --debug
