@@ -24,5 +24,7 @@ jobs:
           ruby-version: '2.6.5'
       - name: Install CLI
         run: curl -fsS https://tools.veracode.com/veracode-cli/install | sh
+      - run: ls -lah
+      - run: echo $PATH
       - name: Veracode package
         run: veracode package -s . -a --debug
